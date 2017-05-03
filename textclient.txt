@@ -1,0 +1,186 @@
+<!-- Use the  Trace Viewer in src/tools/tracesviewer to view this  trace  
+Here are the stack configuration properties 
+javax.sip.IP_ADDRESS= 192.168.199.231
+javax.sip.STACK_NAME= TextClient
+javax.sip.ROUTER_PATH= null
+javax.sip.OUTBOUND_PROXY= null
+-->
+<!-- Use the  Trace Viewer in src/tools/tracesviewer to view this  trace  
+Here are the stack configuration properties 
+javax.sip.IP_ADDRESS= 192.168.199.231
+javax.sip.STACK_NAME= TextClient
+javax.sip.ROUTER_PATH= null
+javax.sip.OUTBOUND_PROXY= null
+-->
+<message
+from="192.168.199.231:5060" 
+to="192.168.199.231:5061" 
+time="1493808315458"
+isSender="true" 
+transactionId="textclientv1.0:d607001713b52e102767e108d92c6963@192.168.199.231:1:message:192.168.199.231:5060" 
+callId="d607001713b52e102767e108d92c6963@192.168.199.231" 
+firstLine="MESSAGE sip:snoopy71@192.168.199.231:5061;transport=udp SIP/2.0" 
+>
+<![CDATA[MESSAGE sip:snoopy71@192.168.199.231:5061;transport=udp SIP/2.0
+Call-ID: d607001713b52e102767e108d92c6963@192.168.199.231
+CSeq: 1 MESSAGE
+From: "harvey" <sip:harvey@192.168.199.231:5060>;tag=textclientv1.0
+To: "snoopy71" <sip:snoopy71@192.168.199.231:5061>
+Via: SIP/2.0/UDP 192.168.199.231:5060;branch=branch1
+Max-Forwards: 70
+Contact: "harvey" <sip:harvey@192.168.199.231:5060>
+Content-Type: text/plain
+Content-Length: 8
+
+]]>
+</message>
+
+<message
+from="192.168.199.231:5060" 
+to="192.168.199.231:5061" 
+time="1493808315471"
+isSender="false" 
+transactionId="textclientv1.0:d607001713b52e102767e108d92c6963@192.168.199.231:1:message:192.168.199.231:5060" 
+callId="d607001713b52e102767e108d92c6963@192.168.199.231" 
+firstLine="MESSAGE sip:snoopy71@192.168.199.231:5061;transport=udp SIP/2.0" 
+>
+<![CDATA[MESSAGE sip:snoopy71@192.168.199.231:5061;transport=udp SIP/2.0
+Call-ID: d607001713b52e102767e108d92c6963@192.168.199.231
+CSeq: 1 MESSAGE
+From: "harvey" <sip:harvey@192.168.199.231:5060>;tag=textclientv1.0
+To: "snoopy71" <sip:snoopy71@192.168.199.231:5061>
+Via: SIP/2.0/UDP 192.168.199.231:5060;branch=branch1
+Max-Forwards: 70
+Contact: "harvey" <sip:harvey@192.168.199.231:5060>
+Content-Type: text/plain
+Content-Length: 8
+
+]]>
+</message>
+
+<message
+from="192.168.199.231:5061" 
+to="192.168.199.231:5060" 
+time="1493808315745"
+isSender="true" 
+transactionId="textclientv1.0:d607001713b52e102767e108d92c6963@192.168.199.231:1:message:192.168.199.231:5060" 
+callId="d607001713b52e102767e108d92c6963@192.168.199.231" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+Call-ID: d607001713b52e102767e108d92c6963@192.168.199.231
+CSeq: 1 MESSAGE
+From: "harvey" <sip:harvey@192.168.199.231:5060>;tag=textclientv1.0
+To: "snoopy71" <sip:snoopy71@192.168.199.231:5061>;tag=888
+Via: SIP/2.0/UDP 192.168.199.231:5060;branch=branch1
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="192.168.199.231:5061" 
+to="192.168.199.231:5060" 
+time="1493808315820"
+isSender="false" 
+transactionId="textclientv1.0:d607001713b52e102767e108d92c6963@192.168.199.231:1:message:192.168.199.231:5060" 
+callId="d607001713b52e102767e108d92c6963@192.168.199.231" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+Call-ID: d607001713b52e102767e108d92c6963@192.168.199.231
+CSeq: 1 MESSAGE
+From: "harvey" <sip:harvey@192.168.199.231:5060>;tag=textclientv1.0
+To: "snoopy71" <sip:snoopy71@192.168.199.231:5061>;tag=888
+Via: SIP/2.0/UDP 192.168.199.231:5060;branch=branch1
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="192.168.199.231:5061" 
+to="192.168.199.231:5060" 
+time="1493808371639"
+isSender="true" 
+transactionId="textclientv1.0:531e10bde2b2fa3cb5983079ed8d1e88@192.168.199.231:1:message:192.168.199.231:5061" 
+callId="531e10bde2b2fa3cb5983079ed8d1e88@192.168.199.231" 
+firstLine="MESSAGE sip:harvey@192.168.199.231:5060;transport=udp SIP/2.0" 
+>
+<![CDATA[MESSAGE sip:harvey@192.168.199.231:5060;transport=udp SIP/2.0
+Call-ID: 531e10bde2b2fa3cb5983079ed8d1e88@192.168.199.231
+CSeq: 1 MESSAGE
+From: "snoopy71" <sip:snoopy71@192.168.199.231:5061>;tag=textclientv1.0
+To: "harvey" <sip:harvey@192.168.199.231:5060>
+Via: SIP/2.0/UDP 192.168.199.231:5061;branch=branch1
+Max-Forwards: 70
+Contact: "snoopy71" <sip:snoopy71@192.168.199.231:5061>
+Content-Type: text/plain
+Content-Length: 11
+
+]]>
+</message>
+
+<message
+from="192.168.199.231:5061" 
+to="192.168.199.231:5060" 
+time="1493808371641"
+isSender="false" 
+transactionId="textclientv1.0:531e10bde2b2fa3cb5983079ed8d1e88@192.168.199.231:1:message:192.168.199.231:5061" 
+callId="531e10bde2b2fa3cb5983079ed8d1e88@192.168.199.231" 
+firstLine="MESSAGE sip:harvey@192.168.199.231:5060;transport=udp SIP/2.0" 
+>
+<![CDATA[MESSAGE sip:harvey@192.168.199.231:5060;transport=udp SIP/2.0
+Call-ID: 531e10bde2b2fa3cb5983079ed8d1e88@192.168.199.231
+CSeq: 1 MESSAGE
+From: "snoopy71" <sip:snoopy71@192.168.199.231:5061>;tag=textclientv1.0
+To: "harvey" <sip:harvey@192.168.199.231:5060>
+Via: SIP/2.0/UDP 192.168.199.231:5061;branch=branch1
+Max-Forwards: 70
+Contact: "snoopy71" <sip:snoopy71@192.168.199.231:5061>
+Content-Type: text/plain
+Content-Length: 11
+
+]]>
+</message>
+
+<message
+from="192.168.199.231:5060" 
+to="192.168.199.231:5061" 
+time="1493808371664"
+isSender="true" 
+transactionId="textclientv1.0:531e10bde2b2fa3cb5983079ed8d1e88@192.168.199.231:1:message:192.168.199.231:5061" 
+callId="531e10bde2b2fa3cb5983079ed8d1e88@192.168.199.231" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+Call-ID: 531e10bde2b2fa3cb5983079ed8d1e88@192.168.199.231
+CSeq: 1 MESSAGE
+From: "snoopy71" <sip:snoopy71@192.168.199.231:5061>;tag=textclientv1.0
+To: "harvey" <sip:harvey@192.168.199.231:5060>;tag=888
+Via: SIP/2.0/UDP 192.168.199.231:5061;branch=branch1
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="192.168.199.231:5060" 
+to="192.168.199.231:5061" 
+time="1493808371668"
+isSender="false" 
+transactionId="textclientv1.0:531e10bde2b2fa3cb5983079ed8d1e88@192.168.199.231:1:message:192.168.199.231:5061" 
+callId="531e10bde2b2fa3cb5983079ed8d1e88@192.168.199.231" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+Call-ID: 531e10bde2b2fa3cb5983079ed8d1e88@192.168.199.231
+CSeq: 1 MESSAGE
+From: "snoopy71" <sip:snoopy71@192.168.199.231:5061>;tag=textclientv1.0
+To: "harvey" <sip:harvey@192.168.199.231:5060>;tag=888
+Via: SIP/2.0/UDP 192.168.199.231:5061;branch=branch1
+Content-Length: 0
+
+]]>
+</message>
+
