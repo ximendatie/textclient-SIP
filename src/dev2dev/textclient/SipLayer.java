@@ -58,135 +58,146 @@ public class SipLayer implements SipListener {
     private SipProvider sipProvider;
 
     /** Here we initialize the SIP stack. */
+    //初始化SIP
     public SipLayer(String username, String ip, int port)
 	    throws PeerUnavailableException, TransportNotSupportedException,
 	    InvalidArgumentException, ObjectInUseException,
 	    TooManyListenersException {
-	setUsername(username);
-	sipFactory = SipFactory.getInstance();
-	sipFactory.setPathName("gov.nist");
-	Properties properties = new Properties();
-	properties.setProperty("javax.sip.STACK_NAME", "TextClient");
-	properties.setProperty("javax.sip.IP_ADDRESS", ip);
-
-	//DEBUGGING: Information will go to files 
-	//textclient.log and textclientdebug.log
-	properties.setProperty("gov.nist.javax.sip.TRACE_LEVEL", "32");
-	properties.setProperty("gov.nist.javax.sip.SERVER_LOG",
-		"textclient.txt");
-	properties.setProperty("gov.nist.javax.sip.DEBUG_LOG",
-		"textclientdebug.log");
-
-	sipStack = sipFactory.createSipStack(properties);
-	headerFactory = sipFactory.createHeaderFactory();
-	addressFactory = sipFactory.createAddressFactory();
-	messageFactory = sipFactory.createMessageFactory();
-
-	ListeningPoint tcp = sipStack.createListeningPoint(port, "tcp");
-	ListeningPoint udp = sipStack.createListeningPoint(port, "udp");
-
-	sipProvider = sipStack.createSipProvider(tcp);
-	sipProvider.addSipListener(this);
-	sipProvider = sipStack.createSipProvider(udp);
-	sipProvider.addSipListener(this);
+    	
+		setUsername(username);
+		sipFactory = SipFactory.getInstance();
+		sipFactory.setPathName("gov.nist");
+		Properties properties = new Properties();
+		properties.setProperty("javax.sip.STACK_NAME", "TextClient");
+		properties.setProperty("javax.sip.IP_ADDRESS", ip);
+	
+		//DEBUGGING: Information will go to files 
+		//textclient.log and textclientdebug.log
+		properties.setProperty("gov.nist.javax.sip.TRACE_LEVEL", "32");
+		properties.setProperty("gov.nist.javax.sip.SERVER_LOG",
+			"textclient.txt");
+		properties.setProperty("gov.nist.javax.sip.DEBUG_LOG",
+			"textclientdebug.log");
+	
+		sipStack = sipFactory.createSipStack(properties);
+		headerFactory = sipFactory.createHeaderFactory();
+		addressFactory = sipFactory.createAddressFactory();
+		messageFactory = sipFactory.createMessageFactory();
+	
+		ListeningPoint tcp = sipStack.createListeningPoint(port, "tcp");
+		ListeningPoint udp = sipStack.createListeningPoint(port, "udp");
+	
+		sipProvider = sipStack.createSipProvider(tcp);
+		sipProvider.addSipListener(this);
+		sipProvider = sipStack.createSipProvider(udp);
+		sipProvider.addSipListener(this);
+		
     }
 
     /**
      * This method uses the SIP stack to send a message. 
      */
+    //发送消息
     public void sendMessage(String to, String message) throws ParseException,
 	    InvalidArgumentException, SipException {
 
-	SipURI from = addressFactory.createSipURI(getUsername(), getHost()
-		+ ":" + getPort());
-	Address fromNameAddress = addressFactory.createAddress(from);
-	fromNameAddress.setDisplayName(getUsername());
-	FromHeader fromHeader = headerFactory.createFromHeader(fromNameAddress,
-		"textclientv1.0");
-
-	String username = to.substring(to.indexOf(":") + 1, to.indexOf("@"));
-	String address = to.substring(to.indexOf("@") + 1);
-
-	SipURI toAddress = addressFactory.createSipURI(username, address);
-	Address toNameAddress = addressFactory.createAddress(toAddress);
-	toNameAddress.setDisplayName(username);
-	ToHeader toHeader = headerFactory.createToHeader(toNameAddress, null);
-
-	SipURI requestURI = addressFactory.createSipURI(username, address);
-	requestURI.setTransportParam("udp");
-
-	ArrayList viaHeaders = new ArrayList();
-	ViaHeader viaHeader = headerFactory.createViaHeader(getHost(),
-		getPort(), "udp", "branch1");
-	viaHeaders.add(viaHeader);
-
-	CallIdHeader callIdHeader = sipProvider.getNewCallId();
-
-	CSeqHeader cSeqHeader = headerFactory.createCSeqHeader(1,
-		Request.MESSAGE);
-
-	MaxForwardsHeader maxForwards = headerFactory
-		.createMaxForwardsHeader(70);
-
-	Request request = messageFactory.createRequest(requestURI,
-		Request.MESSAGE, callIdHeader, cSeqHeader, fromHeader,
-		toHeader, viaHeaders, maxForwards);
-
-	SipURI contactURI = addressFactory.createSipURI(getUsername(),
-		getHost());
-	contactURI.setPort(getPort());
-	Address contactAddress = addressFactory.createAddress(contactURI);
-	contactAddress.setDisplayName(getUsername());
-	ContactHeader contactHeader = headerFactory
-		.createContactHeader(contactAddress);
-	request.addHeader(contactHeader);
-
-	ContentTypeHeader contentTypeHeader = headerFactory
-		.createContentTypeHeader("text", "plain");
-	request.setContent(message, contentTypeHeader);
-
-	sipProvider.sendRequest(request);
+		SipURI from = addressFactory.createSipURI(getUsername(), getHost()
+			+ ":" + getPort());
+		Address fromNameAddress = addressFactory.createAddress(from);
+		fromNameAddress.setDisplayName(getUsername());
+		FromHeader fromHeader = headerFactory.createFromHeader(fromNameAddress,
+			"textclientv1.0");
+	
+		String username = to.substring(to.indexOf(":") + 1, to.indexOf("@"));
+		String address = to.substring(to.indexOf("@") + 1);
+	
+		SipURI toAddress = addressFactory.createSipURI(username, address);
+		Address toNameAddress = addressFactory.createAddress(toAddress);
+		toNameAddress.setDisplayName(username);
+		ToHeader toHeader = headerFactory.createToHeader(toNameAddress, null);
+	
+		SipURI requestURI = addressFactory.createSipURI(username, address);
+		requestURI.setTransportParam("udp");
+	
+		ArrayList viaHeaders = new ArrayList();
+		ViaHeader viaHeader = headerFactory.createViaHeader(getHost(),
+			getPort(), "udp", "branch1");
+		viaHeaders.add(viaHeader);
+	
+		CallIdHeader callIdHeader = sipProvider.getNewCallId();
+	
+		CSeqHeader cSeqHeader = headerFactory.createCSeqHeader(1,
+			Request.MESSAGE);
+	
+		MaxForwardsHeader maxForwards = headerFactory
+			.createMaxForwardsHeader(70);
+	
+		Request request = messageFactory.createRequest(requestURI,
+			Request.MESSAGE, callIdHeader, cSeqHeader, fromHeader,
+			toHeader, viaHeaders, maxForwards);
+	
+		SipURI contactURI = addressFactory.createSipURI(getUsername(),
+			getHost());
+		contactURI.setPort(getPort());
+		Address contactAddress = addressFactory.createAddress(contactURI);
+		contactAddress.setDisplayName(getUsername());
+		ContactHeader contactHeader = headerFactory
+			.createContactHeader(contactAddress);
+		request.addHeader(contactHeader);
+	
+		ContentTypeHeader contentTypeHeader = headerFactory
+			.createContentTypeHeader("text", "plain");
+		request.setContent(message, contentTypeHeader);
+	
+		sipProvider.sendRequest(request);
+		
     }
 
     /** This method is called by the SIP stack when a response arrives. */
+    //处理响应
     public void processResponse(ResponseEvent evt) {
-	Response response = evt.getResponse();
-	int status = response.getStatusCode();
-
-	if ((status >= 200) && (status < 300)) { //Success!
-	    messageProcessor.processInfo("--Sent");
-	    return;
-	}
-
-	messageProcessor.processError("Previous message not sent: " + status);
+    	
+		Response response = evt.getResponse();
+		int status = response.getStatusCode();
+	
+		if ((status >= 200) && (status < 300)) { //Success!
+		    messageProcessor.processInfo("--Sent");
+		    return;
+		}
+	
+		messageProcessor.processError("Previous message not sent: " + status);
+		
     }
-
-    /** 
-     * This method is called by the SIP stack when a new request arrives. 
-     */
+	
+	 /** 
+      * This method is called by the SIP stack when a new request arrives. 
+      */
+    //处理请求
     public void processRequest(RequestEvent evt) {
-	Request req = evt.getRequest();
-
-	String method = req.getMethod();
-	if (!method.equals("MESSAGE")) { //bad request type.
-	    messageProcessor.processError("Bad request type: " + method);
-	    return;
-	}
-
-	FromHeader from = (FromHeader) req.getHeader("From");
-	messageProcessor.processMessage(from.getAddress().toString(),
-		new String(req.getRawContent()));
-	Response response = null;
-	try { //Reply with OK
-	    response = messageFactory.createResponse(200, req);
-	    ToHeader toHeader = (ToHeader) response.getHeader(ToHeader.NAME);
-	    toHeader.setTag("888"); //This is mandatory as per the spec.
-	    ServerTransaction st = sipProvider.getNewServerTransaction(req);
-	    st.sendResponse(response);
-	} catch (Throwable e) {
-	    e.printStackTrace();
-	    messageProcessor.processError("Can't send OK reply.");
-	}
+		
+    	Request req = evt.getRequest();
+	
+		String method = req.getMethod();
+		if (!method.equals("MESSAGE")) { //bad request type.
+		    messageProcessor.processError("Bad request type: " + method);
+		    return;
+		}
+	
+		FromHeader from = (FromHeader) req.getHeader("From");
+		messageProcessor.processMessage(from.getAddress().toString(),
+			new String(req.getRawContent()));
+		Response response = null;
+		try { //Reply with OK
+		    response = messageFactory.createResponse(200, req);
+		    ToHeader toHeader = (ToHeader) response.getHeader(ToHeader.NAME);
+		    toHeader.setTag("888"); //This is mandatory as per the spec.
+		    ServerTransaction st = sipProvider.getNewServerTransaction(req);
+		    st.sendResponse(response);
+		} catch (Throwable e) {
+		    e.printStackTrace();
+		    messageProcessor.processError("Can't send OK reply.");
+		}
+		
     }
 
     /** 

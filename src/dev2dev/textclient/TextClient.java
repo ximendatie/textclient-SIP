@@ -71,8 +71,12 @@ public class TextClient
 		    String username = args[0];
 		    int port = Integer.parseInt(args[1]);
 		    String ip = InetAddress.getLocalHost().getHostAddress();
+			
+//			String username = "harvey2";
+//		    int port = 6521;
+//		    String ip = "127.0.0.1";
 
-			SipLayer sipLayer = new SipLayer(username, ip, port);
+			SipLayer sipLayer = new SipLayer(username, ip, port);//sip层
 		    TextClient tc = new TextClient(sipLayer);
 		    sipLayer.setMessageProcessor(tc);
 			
@@ -183,7 +187,7 @@ public class TextClient
         {
             String to = this.toAddress.getText();
             String message = this.sendMessages.getText();
-            sipLayer.sendMessage(to, message);
+            sipLayer.sendMessage(to, message);//发送信息
         } catch (Throwable e)
         {
             e.printStackTrace();
